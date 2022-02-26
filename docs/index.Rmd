@@ -1,0 +1,83 @@
+---
+title: "Assignment 3: Incarceration Trends"
+output: html_document
+author: Christine Hau
+date: 2/21/2022
+---
+
+```{r setup, include=FALSE}
+knitr::opts_chunk$set(echo = TRUE)
+```
+
+```{r include=FALSE}
+knitr::opts_chunk$set(comment = NA)
+```
+
+## R Markdown
+
+### **Introduction**
+I am choosing the analyze how the black population of inmates changes or differs from other races and how it is correlated by other factors (i.e residing metropolian area or not). I want to analyze this because with the increased popularity and publicizing of the Black Lives Matter movement, it has made me become more aware of the systemic racism in America especially towards Black populations and how this racism has strongly affected generations of their lives-- i.e less likely to graduate from college, more likely to be imprisoned innocently, and the list goes on. Thus, I was inspired by my increased awareness of this population and wanted to process my data analysis on it. 
+The variables I am choosing to analyze are Latinx total jail populations, Black total jail populations, total jail populations in the U.S., and populations in the Metro Areas. 
+
+### **Information about the Data set used: Incarceration Trends**
+The Incarceration Trends data set was created by the Vera Project and was intended to provide county-level data on prison and jail incarceration and related measures over time for the entire United States.
+
+### **Summary Statistics and information**
+
+```{r summary, echo=FALSE, warning=FALSE, message= FALSE}
+library(tidyr)
+source("../source/summarize.R")
+summary_info
+```
+
+#### I chose to dissect the following variables:
+
+#### **Year That had the Highest Latinx Jail Population**
+I wanted to calculate this statistic because when observing the graph, we see this significant peak around year 1993. This value is even higher than the black jail population in 1993, so I believe this was a statistic worth highlighting. It is also worth noticing that most of the Latinx populations for each year were greater than black jail populations. This interesting because we often see the statistic of high rates of African American individuals being incarcerated but not much is said about Latinx populations. It was found that 1993 had the highest Latinx incarcerated population.
+
+#### **Year That had the Highest Black Jail Population**
+The same logic for the previous variable goes for here. This data debunks the phenomenon that black individuals have the highest rates of incarceration in the U.S. It was again found that 1993 had the highest population of Black inmates. It is interesting because in 1993, there was the 9/11 Bombings so maybe the crime rates were higher or more people were getting arrested because the government was being cautious. I think this same reasoning can be used to possibly explain the highest Latinx jail population year too.
+
+#### **In the Highest Inmate Population Year: Population Differences Between Latinx and Black Populations**
+The difference obtained was -13724764 individuals which made sense because the gap between the turquoise and red bar were about this far (looking at the scale of population). This is a large difference and it makes you think about the minority diversity in the jail population. Again, this brings it back full-circle to the idea I raised in the introduction about systemic racism (towards minority races) and how they are more likely to be arrested or more susceptible to committing crime in their life. 
+
+#### **Highest Ratio of Black Inmates with Respect to U.S Total Population**
+I wanted to look at the ratio between black inmates and U.S. total population because I wanted to relate the populations per state to see how many inmates of each state contribute to the the total population in the U.S. This was interesting because I was trying to find the state with the highest ratio-- which was found to be Washington D.C. Thinking about this statistic, it would make sense that they would have the highest ratio because they are quite a small state, so reflecting on this value now, I think it would be helpful to find the total population per state instead and use that as the total population to create this ratio. Nevertheless, this information is insightful. Additionally the data provided for this heat map was limited due to the many NAs in the data set. Thus, I just went with the states I had data for and created a sufficiently colorful map. The highest ratio obtained was 0.85 which is pretty high and unrealistic. This is likely due to the flaw of the data set itself and like mentioned previously, the state size. 
+
+#### **Black Jail Population for the Highest Metro Population**
+I was initially interested in this statistic because metropolitan populations are usually quite dense and typically there are more people there; hence, a greater possibility for a larger jail population. However, looking at the graph, there wasn't really a positive correlation trend like I expected. My statistic I obtained was 118.5 people, whcih didn't seem like a lot. I calculated this to compare to the lowest metro population
+
+#### **Black Jail Population for the Lowest Metro Population**
+I explained my interests for this statistic in the previous "highest metro population"explanation; however, this statistic was really interesting to see because it doesn't differ very much from the highest metro population. For this summary statistic, I got a total of 105.2 people. Although less than 118, this difference is not much given that the lowest metro population was 10100 people vs. 49820 people in the highest metro population.
+
+### ***Graphs***
+
+#### **Trends over Analysis graph: Black and Latinx Imprisonment in the U.S.**
+```{r trends over analysis graph,echo=FALSE,warning=FALSE,message=FALSE}
+source("../source/tanalysis.R")
+plotted
+```
+
+This is a graph showing the incarceration trends of Latinx and Black jail populations. I was interested in comparing these populations because these were populations that I've learned about in classes that were highly susceptible to be imprison due to reasons like systemic racism and historical wars. From this graph I immediately noticed the high inmate population in the year 1993. I describe previously that major U.S. events that happened in this year was the 9/11 attacks which put the country in turmoil but otherwise the data is a little difficult to explain. It was also interesting that there was an overall higher Black inmate incarceration vs. Latinx inmate incarceration according to this data. This is contrary to topics that I had learned about in class, so this was an interesting find. I chose a dodged bar graph that contained both Latinx and Black populations so that I could compare two races and see if they had similar trends. I also did this analysis through the years that the data collected until because I was curious to see the trend during the 19th and 20th century. 
+
+#### **Variable Comparison Graph**
+```{r variable comparison graph, echo=FALSE, message=FALSE, warning=FALSE}
+library(dplyr)
+library(tidyr)
+library(tidyverse)
+library(plotly)
+source("../source/vanalysis.R")
+plot(variable_comparision_graph)
+```
+
+
+This is a graph showing the comparisons between the two continuous variables Metro Area and Black Jail Population. I chose this comparison because I wanted to see what the Jail populations looked like in a densely populated area. I predicted that there would be a positive correlation between these two variables because usually with a more dense population, there would be more people that are likely to be imprisoned. However, I didn't see much of a correlation trend at all. There was also this outlier that affected the data but even with the removal of the outlier, I couldn't see a trend of any sort. The data seemed all over the place. I also used a scatterplot because this is the most effective way to display a correlational relationship; however, I was unable to find a significant one. 
+
+####  **Heat Map of the U.S.**
+```{r map, echo=FALSE,warning=FALSE,message=FALSE}
+source("../source/mapanalysis.R")
+new_graph
+```
+
+
+This is a heat map showing the different states in the U.S.'s Black inmate to Total U.S. population proportion. This map is interesting because it shows the different levels of imprisonment across the U.S. There were lots of NAs in the data set so I was unable to obtain data from a lot of states and I was only able to get data on 18 states. These are the 18 states that are not grey. This graph was interesting because it showed that many coastal states had high porportions of black inmate:U.S population. This makes sense because these coastal areas are where population is the highest and hence, more chance of crime and imprisonment. I chose a proportional relationship to show how inmate populations related to the entire U.S. population in that particular state.
